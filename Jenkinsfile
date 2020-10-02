@@ -8,7 +8,7 @@ pipeline {
             }
         }
         stage ('Compile Stage') {
-            steps {
+            withMaven {
                 sh 'mvn -f pompoms/reactor/pom.xml clean install'
             }
         }
