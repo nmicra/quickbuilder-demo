@@ -12,7 +12,7 @@ pipeline {
         }
         stage ('Compile Stage') {
             steps {
-				withMaven{ sh 'mvn -f pompoms/reactor/pom.xml clean install' }
+				sh '${M2_HOME}/bin/mvn -f pompoms/reactor/pom.xml clean install'
             }
         }
         
