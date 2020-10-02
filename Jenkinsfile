@@ -1,5 +1,8 @@
 pipeline {
     agent any
+	tools {
+		maven "maven-3.6.3"
+	}
     stages {
 		stage ('Sleep Stage') {
             steps {
@@ -9,7 +12,8 @@ pipeline {
         }
         stage ('Compile Stage') {
             steps {
-                sh 'mvn -f pompoms/reactor/pom.xml clean install'
+				//sh '${M2_HOME}/bin/mvn -f pompoms/reactor/pom.xml clean install'
+				sh 'mvn -f pompoms/reactor/pom.xml clean install'
             }
         }
         
