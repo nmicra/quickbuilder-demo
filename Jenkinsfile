@@ -10,10 +10,17 @@ pipeline {
 				sleep 5
             }
         }
+		stage ('Get Incremental POM') {
+            steps {
+                sh 'curl http://localhost:8080/pom/${BRANCH_NAME}/${BUILD_NUMBER} > pom.xml'
+				cat pom.xml
+            }
+        }
         stage ('Compile Stage') {
             steps {
 				//sh '${M2_HOME}/bin/mvn -f pompoms/reactor/pom.xml clean install'
-				sh 'mvn -f pompoms/reactor/pom.xml clean install'
+				//sh 'mvn -f pompoms/reactor/pom.xml clean install'
+				sh 'mvn clean install'
             }
         }
         
