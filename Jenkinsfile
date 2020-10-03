@@ -3,6 +3,9 @@ pipeline {
 	tools {
 		maven "maven-3.6.3"
 	}
+	environment {
+     BRANCH_NAME = "${GIT_BRANCH.split("/")[1]}"
+	}
     stages {
 		stage ('Sleep Stage') {
             steps {
@@ -12,8 +15,9 @@ pipeline {
         }
 		stage ('Get Incremental POM') {
             steps {
-                sh 'curl http://localhost:8080/pom/${env.BRANCH_NAME}/${currentBuild.number} > pom.xml'
-				cat pom.xml
+				echo 'Branchname: ${BRANCH_NAME}'
+                //sh 'curl http://localhost:8080/pom/${env.BRANCH_NAME}/${currentBuild.number} > pom.xml'
+				//cat pom.xml
             }
         }
         stage ('Compile Stage') {
