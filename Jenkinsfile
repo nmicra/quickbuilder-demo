@@ -12,7 +12,7 @@ pipeline {
         }
 		stage ('Get Incremental POM') {
             steps {
-                sh 'curl http://localhost:8080/pom/${BRANCH_NAME}/${BUILD_NUMBER} > pom.xml'
+                sh 'curl http://localhost:8080/pom/${env.BRANCH_NAME}/${currentBuild.number} > pom.xml'
 				cat pom.xml
             }
         }
